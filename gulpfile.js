@@ -67,16 +67,16 @@ gulp.task('build:style', function() {
     .pipe(gulp.dest(dist));
 });
 
-gulp.task('build:example:assets', function() {
+gulp.task('build:jing:assets', function() {
   gulp
-    .src('src/example/**/*.?(png|jpg|gif|js)', option)
+    .src('src/jing/**/*.?(png|jpg|gif|js)', option)
     .pipe(gulp.dest(dist))
     .pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('build:example:style', function() {
+gulp.task('build:jing:style', function() {
   gulp
-    .src('src/example/example.less', option)
+    .src('src/jing/example.less', option)
     .pipe(
       less().on('error', function(e) {
         console.error(e.message);
@@ -94,9 +94,9 @@ gulp.task('build:example:style', function() {
     .pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('build:example:html', function() {
+gulp.task('build:jing:html', function() {
   gulp
-    .src('src/example/index.html', option)
+    .src('src/jing/index.html', option)
     .pipe(
       tap(function(file) {
         var dir = path.dirname(file.path);
@@ -123,19 +123,19 @@ gulp.task('build:example:html', function() {
     .pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('build:example', [
-  'build:example:assets',
-  'build:example:style',
-  'build:example:html'
+gulp.task('build:jing', [
+  'build:jing:assets',
+  'build:jing:style',
+  'build:jing:html'
 ]);
 
-gulp.task('release', ['build:style', 'build:example']);
+gulp.task('release', ['build:style', 'build:jing']);
 
 gulp.task('watch', ['release'], function() {
   gulp.watch('src/style/**/*', ['build:style']);
-  gulp.watch('src/example/example.less', ['build:example:style']);
-  gulp.watch('src/example/**/*.?(png|jpg|gif|js)', ['build:example:assets']);
-  gulp.watch('src/**/*.html', ['build:example:html']);
+  gulp.watch('src/jing/example.less', ['build:jing:style']);
+  gulp.watch('src/jing/**/*.?(png|jpg|gif|js)', ['build:jing:assets']);
+  gulp.watch('src/**/*.html', ['build:jing:html']);
 });
 
 gulp.task('server', function() {
@@ -151,7 +151,7 @@ gulp.task('server', function() {
       }
     },
     port: yargs.p,
-    startPath: '/example'
+    startPath: '/jing/#button'
   });
 });
 
